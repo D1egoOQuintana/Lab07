@@ -1,0 +1,54 @@
+<!-- src/templates/blog/base.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Blog Django{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .content {
+            padding: 2rem;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1><a href="{% url 'blog:post_list' %}" style="color: white; text-decoration: none;">Mi Blog Django</a></h1>
+</header>
+
+<div class="content">
+    {% block content %}
+    <!-- Aquí se insertará el contenido específico de cada página -->
+    {% endblock %}
+</div>
+
+<footer>
+    <p>&copy; 2025 Mi Blog Django</p>
+</footer>
+
+</body>
+</html>
