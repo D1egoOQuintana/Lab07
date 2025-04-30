@@ -1,9 +1,15 @@
 {% extends "blog/base.html" %}
 
-{% block title %}Django Blog Platform - Latest Posts{% endblock %}
+{% block title %}Posts in {{ category.name }} - Django Blog Platform{% endblock %}
 
 {% block content %}
-    <h2><i class="fas fa-newspaper"></i> Latest Posts</h2>
+    <h2><i class="fas fa-folder-open"></i> Posts in Category: {{ category.name }}</h2>
+    
+    {% if category.description %}
+        <div class="category-description">
+            {{ category.description|linebreaks }}
+        </div>
+    {% endif %}
     
     {% for post in posts %}
         <article class="post">
@@ -13,7 +19,6 @@
             
             <div class="post__meta">
                 <span><i class="fas fa-user"></i> {{ post.author.username }}</span>
-                <span><i class="fas fa-folder"></i> <a href="{% url 'blog:category_detail' post.category.slug %}">{{ post.category.name }}</a></span>
                 <span><i class="fas fa-calendar"></i> {{ post.created_at|date:"F j, Y" }}</span>
                 <span><i class="fas fa-comments"></i> {{ post.comments.count }} comments</span>
             </div>
@@ -39,7 +44,7 @@
         </article>
     {% empty %}
         <div class="post">
-            <p><i class="fas fa-info-circle"></i> No posts available yet.</p>
+            <p><i class="fas fa-info-circle"></i> No posts available in this category yet.</p>
         </div>
     {% endfor %}
     

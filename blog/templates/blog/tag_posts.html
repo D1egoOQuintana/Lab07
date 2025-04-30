@@ -1,9 +1,9 @@
 {% extends "blog/base.html" %}
 
-{% block title %}Django Blog Platform - Latest Posts{% endblock %}
+{% block title %}Posts tagged with {{ tag.name }} - Django Blog Platform{% endblock %}
 
 {% block content %}
-    <h2><i class="fas fa-newspaper"></i> Latest Posts</h2>
+    <h2><i class="fas fa-tag"></i> Posts tagged with: {{ tag.name }}</h2>
     
     {% for post in posts %}
         <article class="post">
@@ -39,7 +39,7 @@
         </article>
     {% empty %}
         <div class="post">
-            <p><i class="fas fa-info-circle"></i> No posts available yet.</p>
+            <p><i class="fas fa-info-circle"></i> No posts available with this tag yet.</p>
         </div>
     {% endfor %}
     
