@@ -47,9 +47,9 @@ class PostDetailView(DetailView):
         context['tags'] = Tag.objects.annotate(
             posts_count=Count('posts')
         ).order_by('-posts_count')[:10]
-        context['recent_posts'] = Post.blog_objects.recent_posts().exclude(
-            id=self.object.id
-        )
+        # Solución: Aplicar el filtro antes del slicing
+        recent_posts = Post.blog_objects.recent_posts().exclude(id=self.object.id)
+        context['recent_posts'] = recent_posts[:5]  # Ajustar el slicing después del filtro
         return context
 
 
